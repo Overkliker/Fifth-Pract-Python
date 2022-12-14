@@ -2,6 +2,24 @@ import csv
 from tabulate import tabulate
 
 
+def csv_writer():
+    """
+    Функция добавляет ученика в файл
+    :return:
+    """
+    name = input("Введите название: ")
+    type = input("Введите тип: ")
+    count = input("Введите количество: ")
+    price = input("Введите цену: ")
+    weight = input("Введите вес: ")
+
+    l1 = [name, type, count, price, weight]
+    with open("fc.csv", mode="a", encoding='utf-8') as w_file:
+        file_writer = csv.writer(w_file, delimiter=",")
+        file_writer.writerow(l1)
+
+    print("Товар успешно добален")
+
 def plain_load(weight):
     """
     Функция загружает самолёт товаром одного типа на максимальную цену
@@ -53,4 +71,11 @@ def plain_load(weight):
         print(tabulate(list_with_products_on_plain, headers=head))
 
 
-plain_load(4)
+print("Что вы хотите сделать: вывести товары - 1 или добавить товар - 2")
+inp = int(input("Введите 1 или 2: "))
+if inp == 1:
+    plain_load(int(input()))
+
+elif inp == 2:
+    csv_writer()
+

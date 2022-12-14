@@ -2,6 +2,26 @@ import csv
 from tabulate import tabulate
 
 
+def csv_writer():
+    """
+    Функция добавляет ученика в файл
+    :return:
+    """
+    name = input("Введите имя: ")
+    school = input("Введите номер школы: ")
+    f = input("Введите ответ на первый вопрос: ")
+    s = input("Введите ответ на второй вопрос: ")
+    fd = input("Введите ответ на третий вопрос: ")
+    fr = input("Введите ответ на четвёртый вопрос: ")
+    fi = input("Введите ответ на пятый вопрос: ")
+
+    l1 = [name, school, f, s, fd, fr, fi]
+    with open("fc.csv", mode="a", encoding='utf-8') as w_file:
+        file_writer = csv.writer(w_file, delimiter=",")
+        file_writer.writerow(l1)
+
+    print("Пользователь успешно добален")
+
 def parse_pers():
     """
     Сортирует школьников по номеру школы и количеству выполненых задний.
@@ -30,4 +50,10 @@ def parse_pers():
             print()
 
 
-parse_pers()
+print("Что вы хотите сделать: вывести учеников - 1 или добавить участника - 2")
+inp = int(input("Введите 1 или 2: "))
+if inp == 1:
+    parse_pers()
+
+elif inp == 2:
+    csv_writer()
